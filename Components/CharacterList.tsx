@@ -6,18 +6,9 @@ import Link from "next/link";
 
 import { useGetCharactersQuery } from "../services/apiSlice";
 
-const CharacterCard = ({ content }) => {
-	return (
-		<div>
-			<table>
-				<thead>
-					<th>{content.name}</th>
-					<th>{content.status}</th>
-				</thead>
-				<tbody></tbody>
-			</table>
-		</div>
-	);
+const CharacterCard = content => {
+	const { id, name, status } = content;
+	return <div>{content}</div>;
 };
 function CharacterList() {
 	const {
@@ -49,7 +40,7 @@ function CharacterList() {
 
 	return (
 		<div className="my-5">
-			<h1 className=" flex m-auto text-xl font-bold md:text-2xl justify-center">Featured Posts</h1>
+			<h1 className=" flex m-auto text-xl font-bold md:text-2xl justify-center">All Characters</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 md: mx-12 lg:grid-cols-3 gap-2 md:gap-0 ">
 				{isGetError
 					? renderError
@@ -57,11 +48,11 @@ function CharacterList() {
 					? renderLoading
 					: isGetSuccess &&
 					  Array.isArray(characters) &&
-					  characters.map((item: { id: React.Key }) => {
+					  characters.map((item: { results: React.Key }) => {
 							return (
 								<CharacterCard
 									content={item}
-									key={item.id}
+									key={item.results}
 								/>
 							);
 					  })}

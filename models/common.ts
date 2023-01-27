@@ -3,10 +3,10 @@
 export interface Data {
 	info: object;
 
-	results: [Object];
+	results: [object];
 }
 
-export interface info<T> extends Data {
+export interface Info<T> extends Data {
 	count: number;
 	pages: number;
 	next: string;
