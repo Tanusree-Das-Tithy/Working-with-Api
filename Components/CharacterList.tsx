@@ -6,9 +6,13 @@ import Link from "next/link";
 
 import { useGetCharactersQuery } from "../services/apiSlice";
 
-const CharacterCard = content => {
-	const { id, name, status } = content;
-	return <div>{content}</div>;
+const CharacterCard = ({ content }) => {
+	return (
+		<div>
+			<p>{content.name}</p>
+			<img src={content.image} />
+		</div>
+	);
 };
 function CharacterList() {
 	const {
@@ -37,7 +41,7 @@ function CharacterList() {
 			</div>
 		</div>
 	);
-
+	let results;
 	return (
 		<div className="my-5">
 			<h1 className=" flex m-auto text-xl font-bold md:text-2xl justify-center">All Characters</h1>
@@ -47,12 +51,11 @@ function CharacterList() {
 					: isGetLoading
 					? renderLoading
 					: isGetSuccess &&
-					  Array.isArray(characters) &&
-					  characters.map((item: { results: React.Key }) => {
+					  characters.results.map((item: { id: React.Key }) => {
 							return (
 								<CharacterCard
 									content={item}
-									key={item.results}
+									key={item.id}
 								/>
 							);
 					  })}

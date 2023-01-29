@@ -1,15 +1,13 @@
 /** @format */
 
-export interface Data {
-	info: object;
-
-	results: [object];
-}
-
-export interface Info<T> extends Data {
+export interface Info {
 	count: number;
 	pages: number;
 	next: string;
 	prev: string;
-	rows: T[];
+}
+
+export interface Data<T> {
+	info: Info;
+	results: T[];
 }

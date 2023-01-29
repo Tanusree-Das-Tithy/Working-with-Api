@@ -1,13 +1,6 @@
 /** @format */
 
-import { Interface } from "node:readline/promises";
-
-export interface Info {
-	count: number;
-	pages: number;
-	next: string;
-	prev: string;
-}
+import { Info } from "./common";
 export interface Origin {
 	name: string;
 	url: string;
@@ -29,10 +22,5 @@ export interface Character {
 	image: string;
 	episode: string[];
 	url: string;
-	created: string;
-}
-
-export interface Characters {
-	info: Info;
-	results: Character[];
+	created: date;
 }

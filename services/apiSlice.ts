@@ -3,7 +3,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BuilderProgram } from "typescript";
 import { Data } from "models/common";
-import { Characters } from "@/models/ResultCharacter";
+import { Character } from "@/models/ResultCharacter";
+import { Location } from "@/models/ResultLocation";
+import { Episode } from "@/models/ResultEpisode";
 export const apiSlice = createApi({
 	reducerPath: "apiSlice",
 	baseQuery: fetchBaseQuery({
@@ -12,16 +14,16 @@ export const apiSlice = createApi({
 
 	tagTypes: ["Character", "Location", "Episode"],
 	endpoints: builder => ({
-		getCharacters: builder.query<Characters, void>({
+		getCharacters: builder.query<Data<Character>, void>({
 			query: id => `/character`,
 			providesTags: ["Character"],
 		}),
 
-		getLocations: builder.query({
+		getLocations: builder.query<Data<Location>, void>({
 			query: () => "/location",
 			providesTags: ["Location"],
 		}),
-		getEpisodes: builder.query({
+		getEpisodes: builder.query<Data<Episode>, void>({
 			query: () => "/episode",
 			providesTags: ["Episode"],
 		}),
