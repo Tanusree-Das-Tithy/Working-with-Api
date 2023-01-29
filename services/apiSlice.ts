@@ -14,17 +14,17 @@ export const apiSlice = createApi({
 
 	tagTypes: ["Character", "Location", "Episode"],
 	endpoints: builder => ({
-		getCharacters: builder.query<Data<Character>, void>({
-			query: id => `/character`,
+		getCharacters: builder.query<Data<Character>, number | void>({
+			query: pages => `/character?page=${pages}`,
 			providesTags: ["Character"],
 		}),
 
-		getLocations: builder.query<Data<Location>, void>({
-			query: () => "/location",
+		getLocations: builder.query<Data<Location>, number | void>({
+			query: pages => `/location?page=${pages}`,
 			providesTags: ["Location"],
 		}),
-		getEpisodes: builder.query<Data<Episode>, void>({
-			query: () => "/episode",
+		getEpisodes: builder.query<Data<Episode>, number | void>({
+			query: pages => `/episode?page=${pages}`,
 			providesTags: ["Episode"],
 		}),
 	}),

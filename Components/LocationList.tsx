@@ -10,18 +10,18 @@ const LocationCard = ({ content }) => {
 	return (
 		<div>
 			<p>{content.name}</p>
-			<img src={content.image} />
+			<p>{content.type} </p>
 		</div>
 	);
 };
-function LocationList() {
+function LocationList(props) {
 	const {
 		data: characters,
 		isLoading: isGetLoading,
 		isSuccess: isGetSuccess,
 		isError: isGetError,
 		error: getError,
-	} = useGetLocationsQuery();
+	} = useGetLocationsQuery(props.page);
 
 	const renderError = (
 		<div
@@ -44,7 +44,7 @@ function LocationList() {
 	let results;
 	return (
 		<div className="my-5">
-			<h1 className=" flex m-auto text-xl font-bold md:text-2xl justify-center">All Characters</h1>
+			<h1 className=" flex m-auto text-xl font-bold md:text-2xl justify-center">All Locations</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 md: mx-12 lg:grid-cols-3 gap-2 md:gap-0 ">
 				{isGetError
 					? renderError
@@ -53,10 +53,12 @@ function LocationList() {
 					: isGetSuccess &&
 					  characters.results.map((item: { id: React.Key }) => {
 							return (
-								<LocationCard
-									content={item}
-									key={item.id}
-								/>
+								<div>
+									<LocationCard
+										content={item}
+										key={item.id}
+									/>
+								</div>
 							);
 					  })}
 			</div>

@@ -14,14 +14,14 @@ const EpisodeCard = ({ content }) => {
 		</div>
 	);
 };
-function EpisodeList() {
+function EpisodeList(props) {
 	const {
 		data: characters,
 		isLoading: isGetLoading,
 		isSuccess: isGetSuccess,
 		isError: isGetError,
 		error: getError,
-	} = useGetEpisodesQuery();
+	} = useGetEpisodesQuery(props.page);
 
 	const renderError = (
 		<div
@@ -44,7 +44,7 @@ function EpisodeList() {
 	let results;
 	return (
 		<div className="my-5">
-			<h1 className=" flex m-auto text-xl font-bold md:text-2xl justify-center">All Characters</h1>
+			<h1 className=" flex m-auto text-xl font-bold md:text-2xl justify-center">All Episodes</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 md: mx-12 lg:grid-cols-3 gap-2 md:gap-0 ">
 				{isGetError
 					? renderError

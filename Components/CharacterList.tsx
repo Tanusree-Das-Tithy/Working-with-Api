@@ -14,14 +14,14 @@ const CharacterCard = ({ content }) => {
 		</div>
 	);
 };
-function CharacterList() {
+function CharacterList(props) {
 	const {
 		data: characters,
 		isLoading: isGetLoading,
 		isSuccess: isGetSuccess,
 		isError: isGetError,
 		error: getError,
-	} = useGetCharactersQuery();
+	} = useGetCharactersQuery(props.page);
 
 	const renderError = (
 		<div
